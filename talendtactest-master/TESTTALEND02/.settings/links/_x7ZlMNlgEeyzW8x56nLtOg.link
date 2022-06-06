@@ -1,0 +1,26 @@
+{
+  "itemId" : "_x7ZlMNlgEeyzW8x56nLtOg",
+  "contextList" : [ {
+    "contextName" : "Default",
+    "repoId" : "_OmpggNmUEeyzW8x56nLtOg",
+    "parameterList" : [ {
+      "id" : "_Om6mQdmUEeyzW8x56nLtOg",
+      "name" : "Connexion_Mysql_Bouygue2_Server"
+    }, {
+      "id" : "_Om6mQtmUEeyzW8x56nLtOg",
+      "name" : "Connexion_Mysql_Bouygue2_Login"
+    }, {
+      "id" : "_Om6mQ9mUEeyzW8x56nLtOg",
+      "name" : "Connexion_Mysql_Bouygue2_Database"
+    }, {
+      "id" : "_Om6mRNmUEeyzW8x56nLtOg",
+      "name" : "Connexion_Mysql_Bouygue2_AdditionalParams"
+    }, {
+      "id" : "_Om6mRdmUEeyzW8x56nLtOg",
+      "name" : "Connexion_Mysql_Bouygue2_Port"
+    }, {
+      "id" : "_Om6mRtmUEeyzW8x56nLtOg",
+      "name" : "Connexion_Mysql_Bouygue2_Password"
+    } ]
+  } ]
+}

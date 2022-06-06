@@ -1,0 +1,64 @@
+package routines;
+import java.util.Date;
+
+
+public class GestionFichiers {
+
+    private static String serveurRacine;
+    private static String environnement;
+    private static String projet;
+    private static String repDepot;
+    private static String repTmp;
+    private static String repArchive;
+    private static String repRejet;
+    private static String repJob;
+    private static String repLog;
+    public static  String fileLog;
+    
+    public static void initGestionFichiers(String moduleName, Object context, String jobName) {
+    	try {
+    	
+    	serveurRacine =  (String) context.getClass().getField("CONFIG_REPERTOIRE_RACINE").get(context);
+    	environnement =  (String) context.getClass().getField("CONFIG_ENVIRONNEMENT").get(context);
+    	projet=(String) context.getClass().getField("CONFIG_PROJET").get(context);
+    	
+    	repJob=moduleName; 
+    	fileLog=jobName;
+    	context.getClass().getField("CONFIG_Gestion_Fichier_RepertoireDepot").set(context, getRepDepot());
+    	context.getClass().getField("CONFIG_Gestion_Fichier_RepertoireTmp").set(context, getRepTmp());
+    	context.getClass().getField("CONFIG_Gestion_Fichier_RepertoireArchive").set(context, getRepArchive());
+    	context.getClass().getField("CONFIG_Gestion_Fichier_RepertoireRejet").set(context, getRepRejet());
+    	context.getClass().getField("CONFIG_Gestion_RepertoireLog").set(context, getRepLog());
+    	}
+    	catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    } 
+    
+    private static String getRepDepot() {
+    	return serveurRacine+"/"+projet+"/"+environnement+"/depot/"+repJob;
+    }
+    
+    private static String getRepTmp() {
+    	return serveurRacine+"/"+projet+"/"+environnement+"/tmp/"+repJob;
+    }
+    
+    private static String getRepRejet() {
+    	return serveurRacine+"/"+projet+"/"+environnement+"/rejet/"+repJob;
+    }
+    
+    private static String getRepArchive() {
+    	return serveurRacine+"/"+projet+"/"+environnement+"/Archive/"+repJob;
+    }
+    private static String getRepLog () {
+    	 
+    	int annee, mois, jour ;
+    	Date dateJour=TalendDate.getCurrentDate();
+    	annee=TalendDate.getPartOfDate("YEAR", dateJour);
+    	mois=TalendDate.getPartOfDate("MONTH", dateJour);
+    	jour=TalendDate.getPartOfDate("DAY_OF_MONTH", dateJour);
+    	fileLog=fileLog+"_"+TalendDate.formatDate("yyyyMMddHHmmss", dateJour);
+    	return serveurRacine+"/"+projet+"/"+environnement+"/log/"+repJob+annee+"/"+(mois+1)+"/"+jour+"/";
+    }
+    
+}

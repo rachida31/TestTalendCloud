@@ -1,0 +1,345 @@
+package routines;
+
+
+/**
+ * Routine qui contient les méthodes sur la gestion des fichiers
+ * @author 		ADMPR01
+ * @Date		09/11/2011
+ * @version		1.0
+ * Historique:
+ * 	15/11/2011	@author ADMPR01	Ajout des méthodes setGestionFichier / asetGestionFichier / GestionFichier / setNomProjet / setEnv 
+ * 	21/11/2011	@author ADMPR01	Suppression du constructeur. Le nom du projet + l'envirronnement sont mis en minuscule 
+ * 	30/04/2012	@author ADMPR01	Ajout de l'archivage
+ */
+
+/*
+ * user specification: the function's comment should contain keys as follows: 1. write about the function's comment.but
+ * it must be before the "{talendTypes}" key.
+ * 
+ * 2. {talendTypes} 's value must be talend Type, it is required . its value should be one of: String, char | Character,
+ * long | Long, int | Integer, boolean | Boolean, byte | Byte, Date, double | Double, float | Float, Object, short |
+ * Short  
+ * 
+ * 3. {Category} define a category for the Function. it is required. its value is user-defined .
+ * 
+ * 4. {param} 's format is: {param} <type>[(<default value or closed list values>)] <name>[ : <comment>]
+ * 
+ * <type> 's value should be one of: string, int, list, double, object, boolean, long, char, date. <name>'s value is the
+ * Function's parameter name. the {param} is optional. so if you the Function without the parameters. the {param} don't
+ * added. you can have many parameters for the Function.
+ * 
+ * 5. {example} gives a example for the Function. it is optional.
+ */
+public class AGestionFichier {
+
+	private static String TypeSeparateur = "/"; //- Séparateur de dossiers	
+	private static String TypeEnv = ""; //- Environnement de travail
+	private static String Projet = ""; //- Nom du projet	
+	private static String NomLog = "log"; //- Nom du répertoire de log	
+	private static String NomTmp = "tmp"; //- Nom du répertoire tmp	
+	private static String NomConfig = "config"; //- Nom du répertoire de log
+	private static String TypeFichierLog = ".csv"; //- Format du fichier log
+	 
+	private static String NomArchive = "archive"; //- Nom du répertoire d'archive //- Michael (30/04/2012)
+	private static String NomRejet = "rejet"; //- Nom du répertoire de rejet //- Madjid (14/05/2012)
+	private static String NomDepot = "depot"; //- Nom du répertoire de rejet //- Madjid (14/05/2012) 
+	private static String NomResultat = "out"; //- Nom du répertoire de rejet //- JDE(29/09/2012) 
+		
+	/**
+    * setNomProject: Gestion du nom du projet
+    * 
+    * {talendTypes} String
+    * 
+    * {Category} Utils
+    * 
+    * {param} string("projet") input: nom du projet
+    * 
+    * {example} setNomProject("FWK") 
+    */
+	private static void setNomProject(String project)	{
+		Projet = project.toLowerCase(); 			
+	}
+	
+	/**
+    * setEnv: Gestion du type d'environnement
+    * 
+    * {talendTypes} String
+    * 
+    * {Category} Utils
+    * 
+    * {param} string("env") input: nom du projet
+    * 
+    * {example} setEnv("DEV") 
+    */
+	private static void setEnv(String env)	{
+		TypeEnv = env.toLowerCase(); 			
+	}
+		
+/**
+    * GestionFichier: Gestion de l'arborescence
+    * 
+    * {talendTypes} String
+    * 
+    * {Category} Utils
+    * 
+    * {param} object(context) input: context du job
+    * * {param} string("repjob") input : répertoire particulier du job ou "" si rien
+    * {param} string("jobname") input: nom du job
+    * 
+    * {example} GestionFichier(context, "", jobName) 
+    */
+	private static void GestionFichier(Object context, String repjob, String jobName)	{		
+		NomLog += TypeSeparateur;
+		NomConfig += TypeSeparateur;
+		Projet += TypeSeparateur;
+		TypeEnv += TypeSeparateur;
+		NomArchive += TypeSeparateur; //- Michael (30/04/2012)
+		NomRejet += TypeSeparateur; //- Madjid (14/05/2012)
+		NomDepot += TypeSeparateur; //- Madjid (14/05/2012)
+		NomResultat += TypeSeparateur; //- Madjid (14/05/2012)
+		NomTmp += TypeSeparateur; //- JDE (27/09/2012)
+		
+		//- Initialisation des différentes variables du groupe de context ACGESTIONFICHIER
+		try{
+			String srvRacine = (String) context.getClass().getField("ACGESTIONFICHIER_ServeurRacine").get(context);
+			//Modif JDE 26/09/2012 : tous les elements sont sur le même serveur, on a juste la notion de repertoire racine et de paths relatifs
+//			String srvDepot = (String) context.getClass().getField("ACGESTIONFICHIER_ServeurDepot").get(context);
+//			String srvLog = (String) context.getClass().getField("ACGESTIONFICHIER_ServeurLog").get(context);	
+			//- Michael (30/04/2012) - Ajout du répertoire d'archive
+//			String srvArchive = (String) context.getClass().getField("ACGESTIONFICHIER_ServeurArchive").get(context);
+			//- Madjid  (11/05/2012) - ajout du répertoire de rejet
+//			String srvRejet = (String) context.getClass().getField("ACGESTIONFICHIER_ServeurRejet").get(context);
+			
+			context.getClass().getField("ACGESTIONFICHIER_RepertoireJob").set(context, repjob);
+			context.getClass().getField("ACGESTIONFICHIER_RepertoireDepot").set(context, getDirectoryDepot(srvRacine, repjob));
+			context.getClass().getField("ACGESTIONFICHIER_RepertoireLog").set(context, getDirectoryLog(srvRacine, repjob));
+			context.getClass().getField("ACGESTIONFICHIER_RepertoireTmp").set(context, getDirectoryTmp(srvRacine, repjob));
+			context.getClass().getField("ACGESTIONFICHIER_RepertoireResultat").set(context, getDirectoryResultat(srvRacine, repjob));
+			context.getClass().getField("ACGESTIONFICHIER_FichierLog").set(context, getFileLog(srvRacine, jobName, ""));
+
+			//- JDE (28/09/2012) - Gestion du répertoire d'archivage et du repertoire de rejet
+			context.getClass().getField("ACGESTIONFICHIER_RepertoireArchive").set(context, getDirectoryArchive(srvRacine, repjob));
+			context.getClass().getField("ACGESTIONFICHIER_RepertoireRejet").set(context, getDirectoryRejet(srvRacine, repjob));
+
+			//- Michael (30/04/2012) - Gestion du répertoir d'archivage
+			//context.getClass().getField("ACGESTIONFICHIER_RepertoireArchive").set(context, getDirectoryArchive(srvArchive, repjob));
+			
+			//- Madjid (11/05/2012) - Test de l'existence du champ avant de le positionner dans le contexte
+//			java.lang.reflect.Field rep_archive = context.getClass().getField("ACGESTIONFICHIER_RepertoireArchive");
+//			if(rep_archive != null){
+//				context.getClass().getField("ACGESTIONFICHIER_RepertoireArchive").set(context, getDirectoryArchive(srvArchive, repjob));
+//			}
+			
+//			java.lang.reflect.Field rep_rejet = context.getClass().getField("ACGESTIONFICHIER_RepertoireRejet");
+//			if(rep_rejet != null){
+//				context.getClass().getField("ACGESTIONFICHIER_RepertoireRejet").set(context, getDirectoryRejet(srvRejet, repjob));
+//			}
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}	
+		
+	}
+		
+   /**
+    * setGestionFichier: Gestion des variables de chemin --> Utiliser pour init tous les job des projets sauf FWK
+    * 
+    * {talendTypes} String
+    * 
+    * {Category} Utils
+    * 
+    * {param} object(context) input: context du job qui doit contenir le groupe de context ACGESTIONFICHIER & CCONFIG
+    * {param} string("repjob") input : répertoire particulier du job ou "" si rien
+    * {param} string("jobname") input: Nom du job
+    * 
+    * {example} setGestionFichier(context, "", jobName) 
+    */
+	public static void setGestionFichier(Object context, String repjob, String jobName)	{		
+		try{
+			setNomProject((String) context.getClass().getField("CCONFIG_ProjectName").get(context));
+			setEnv((String) context.getClass().getField("CCONFIG_Environnement").get(context));						
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		GestionFichier(context, repjob, jobName);
+	}
+
+	/**
+    * asetGestionFichier: Gestion des variables de chemin --> à utiliser pour le projet FWK uniquement
+    * 
+    * {talendTypes} String
+    * 
+    * {Category} Utils
+    * 
+    * {param} Object(context) input: context du job qui doit contenir le groupe de context ACGESTIONFICHIER & CCONFIG
+    * * {param} string("repjob") input : répertoire particulier du job ou "" si rien
+    * {param} string("jobname") input: Nom du job
+    * 
+    * {example} asetGestionFichier(context, jobName) 
+    */
+	public static void asetGestionFichier(Object context, String repjob, String jobName)	{
+		
+		try{
+			setNomProject((String) context.getClass().getField("ACCONFIG_ProjectName").get(context));
+			setEnv((String) context.getClass().getField("ACCONFIG_Environnement").get(context));
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		GestionFichier(context, repjob, jobName);
+	}
+
+    /**
+     * getDirectoryLog: return le chemin d'accès au répertoire de log
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} Utils
+     * 
+     * {param} string("pathlog") input: serveur + partage windows
+     * {param} string("jobpath") input: Chemin complémentaire pour le job
+     * 
+     * {example} getDirectoryLog("//nas01/", "playlist/uradex/") 
+     */
+    public static String getDirectoryLog(String pathRacine, String jobpath ){
+    	String path;
+    	
+    	path = pathRacine + TypeEnv + Projet + NomLog + TalendDate.formatDate("yyyy", TalendDate.getCurrentDate()) + TypeSeparateur +
+    		jobpath + TalendDate.formatDate("MM", TalendDate.getCurrentDate()) + TypeSeparateur +
+    		TalendDate.formatDate("dd", TalendDate.getCurrentDate()) + TypeSeparateur; 
+    	
+    	return path;
+    }
+    
+    /**
+     * getDirectoryArchive: return le chemin d'accès au répertoire d'archive
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} Utils
+     * 
+     * {param} string("path") input: serveur + partage windows
+     * {param} string("jobpath") input: Chemin complémentaire pour le job
+     * 
+     * {example} getDirectoryArchive("//nas01/", "playlist/uradex/") 
+     */
+    public static String getDirectoryArchive(String pathRacine, String jobpath ){
+    	String path;
+    	
+    	path = pathRacine + TypeEnv + Projet + NomArchive + TalendDate.formatDate("yyyy", TalendDate.getCurrentDate()) + TypeSeparateur +
+    		jobpath + TalendDate.formatDate("MM", TalendDate.getCurrentDate()) + TypeSeparateur +
+    		TalendDate.formatDate("dd", TalendDate.getCurrentDate()) + TypeSeparateur; 
+    	
+    	return path;
+    }
+    
+    public static String getRacineArchiveModule(Object context, String jobpath){
+    	
+    	String path = "";
+
+    	try {
+    		String repRacine = (String) context.getClass().getField("ACGESTIONFICHIER_ServeurRacine").get(context);
+    		path = repRacine + TypeEnv + Projet + NomArchive + TalendDate.formatDate("yyyy", TalendDate.getCurrentDate()) + TypeSeparateur + jobpath;
+    	} catch(Exception e) {
+   			e.printStackTrace();
+   		}	
+    	return path;
+    }
+    
+    public static String getDirectoryRejet(String pathRacine, String jobpath ){
+    	String path;
+    	
+    	path = pathRacine + TypeEnv + Projet + NomRejet + TalendDate.formatDate("yyyy", TalendDate.getCurrentDate()) + TypeSeparateur +
+    		jobpath + TalendDate.formatDate("MM", TalendDate.getCurrentDate()) + TypeSeparateur +
+    		TalendDate.formatDate("dd", TalendDate.getCurrentDate()) + TypeSeparateur; 
+    	
+    	return path;
+    }
+    
+    
+    
+   /**
+    * getFileLog: return le nom du fichier log
+    * 
+    * {talendTypes} String
+    * 
+    * {Category} Utils
+    * 
+    * {param} string("pathlog") input: serveur + partage windows
+    * {param} string("jobname") input: Nom du job.
+    * {param} string("jobpath") input: Chemin particulier du job
+    * 
+    * {example} getFileLog("//nas01/", "jmPlayListUradex", "playlist/uradex/") 
+    */
+   public static String getFileLog(String pathRacine, String jobname, String jobpath ){   		
+   		return getDirectoryLog(pathRacine, jobpath) + jobname + "_" + TalendDate.formatDate("HHmmSS", TalendDate.getCurrentDate()) + TypeFichierLog;    	
+   }  
+ 	
+  /**
+   * getDirectoryTmp: return le chemin d'accès au répertoire tmp
+   * 
+   * {talendTypes} String
+   * 
+   * {Category} Utils
+   * 
+   * {param} string("pathlog") input: serveur + partage windows
+   * {param} string("jobpath") input: Chemin particulier du job
+   * 
+   * {example} getDirectoryTmp("//nas01/", "playlist/uradex/") 
+   */
+  public static String getDirectoryTmp(String pathRacine, String jobpath ){
+	  return pathRacine + TypeEnv + Projet + NomTmp + jobpath;  
+  }
+  
+  /**
+   * getDirectoryDepot: return le chemin d'accès au répertoire de dépôt de fichier
+   * 
+   * {talendTypes} String
+   * 
+   * {Category} Utils
+   * 
+   * {param} string("pathin") input: serveur + partage windows
+   * {param} string("jobpath") input: Chemin particulier du job
+   * 
+   * {example} getDirectoryDepot("//nas01/", "playlist/uradex/" 
+   */
+  public static String getDirectoryDepot(String pathRacine, String jobpath ){
+	  return pathRacine + TypeEnv + Projet + NomDepot + jobpath;
+  }
+  
+  /**
+   * getDirectoryResultat: return le chemin d'accès au répertoire de résultat du traitement
+   * 
+   * {talendTypes} String
+   * 
+   * {Category} Utils
+   * 
+   * {param} string("pathin") input: serveur + partage windows
+   * {param} string("jobpath") input: Chemin particulier du job
+   * 
+   * {example} getDirectoryResultat("//nas01/partage/", "playlist/uradex/") 
+   */
+  public static String getDirectoryResultat(String pathRacine, String jobpath ){
+	  return pathRacine + TypeEnv + Projet + NomResultat + jobpath;
+//	  return getDirectoryLog(pathlog, jobpath);
+  }
+  
+  /**
+   * getDirectoryConfig: return le chemin d'accès au répertoire de configuration
+   * 
+   * {talendTypes} String
+   * 
+   * {Category} Utils
+   * 
+   * {param} string("pathin") input: serveur + partage windows
+   * {param} string("jobpath") input: Chemin particulier du job
+   * 
+   * {example} getDirectoryConfig("//nas01/partage/") 
+   */
+  public static String getDirectoryConfig(String pathRacine){
+	  return pathRacine + TypeEnv + Projet + NomConfig;
+  }
+}
+

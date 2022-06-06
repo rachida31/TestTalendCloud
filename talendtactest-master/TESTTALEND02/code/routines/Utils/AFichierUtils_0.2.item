@@ -1,0 +1,193 @@
+package routines;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class AFichierUtils {
+
+	/*Determine si un fichier est une archive ou non 
+	 * 
+	 * MD 20/06/2012
+	 * 
+	 */
+	public static boolean estUnFichierArchive(String nomFichier){
+		boolean res = false;
+
+		Collection<String> extensions = new ArrayList<String>();
+		extensions.add("ZIP");
+		extensions.add("EXE");
+		extensions.add("RAR");
+		extensions.add("7Z");
+		extensions.add("GZIP");
+		extensions.add("TAR");	
+
+		if(nomFichier != null && ! "".equals(nomFichier) ){
+
+			nomFichier = nomFichier.toUpperCase();
+
+			if(nomFichier.indexOf(".") != -1){
+				String extension = nomFichier.substring(nomFichier.indexOf(".")+1, nomFichier.length() );
+				if( ! "".equals(extension) ){
+					if(extensions.contains(extension)){
+						res = true;
+					}
+				}
+			}			
+		}		
+		return res;
+	}
+
+
+	/*Retourne un nom de fichier sans l'extension 
+	 * 
+	 * MD 20/06/2012
+	 * 
+	 */
+	public static String removeFileExtension(String fileName){
+		String res = fileName;
+
+		if(fileName != null && fileName.indexOf(".") != -1){
+			res = fileName.substring(0, fileName.indexOf("."));
+		}
+
+		return res;
+
+	}
+
+	/* Retourne le type de declaration (Principal ou Additif)
+	 * en fonction de son nom
+	 * MD 03/07/2012
+	 */
+	public static String getTypeDeclaration(String nomFichier){
+
+		String res = ""; 
+
+		if( nomFichier != null && ! "".equals(nomFichier)){
+
+			String fileWithoutExt = AFichierUtils.getFilenameWithoutExtension(nomFichier.toUpperCase());
+
+			if(fileWithoutExt.indexOf("_ADD_") != -1  ){
+				res = "A"; //Additif
+			}		
+			else if ( finitParPR01(fileWithoutExt) || finitParA(fileWithoutExt) ){
+
+				res = "P"; //Principal
+			}
+			else if ( finitParLettreSaufA(fileWithoutExt) ){
+
+				res = "A"; //Additif
+			}
+		}
+
+		return res;
+
+	}
+
+	/* Determine si un nom de fichier finit par A.EXE
+	 * MD 11/07/2012
+	 */
+	public static boolean finitParA(String nomFichier){
+		return nomFichier.matches(".*A");
+
+	}
+	
+	/* Determine si un nom de fichier finit par PR01
+	 * MM 23/01/2017
+	 */
+	public static boolean finitParPR01(String nomFichier){
+		return nomFichier.matches(".*PR01");
+
+	}
+
+	/* Determine si un nom de fichier finit par B->Z.EXE
+	 * MD 11/07/2012
+	 */
+	public static boolean finitParLettreSaufA(String nomFichier){
+		return nomFichier.matches(".*[B-Z]");
+
+	}
+	
+
+	
+    /**
+     * getFilenameWithoutExtension: return the File name Without Extension 
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} User Defined
+     * 
+     * {param} string("world") input: The string need to be returned.
+     * 
+     * {example} getFilenameWithoutExtension("monfichier.txt") # monfichier.
+     * AOU 02/10/2013
+     */
+	public static String getFilenameWithoutExtension(String fileName){
+		
+		if (fileName != null){
+			
+			int index = fileName.lastIndexOf('.');
+			
+			 if (index>0&& index <= fileName.length() - 2 ) return fileName.substring(0, index);
+		}
+		
+		return null;
+		
+	}
+	
+	
+	
+	public static String getFileExtension(String fileName){
+		
+		if (fileName != null){
+			
+			int index = fileName.lastIndexOf('.');
+			
+			 if (index>0&& index <= fileName.length() - 2 ) return fileName.substring(index, fileName.length());
+		}
+		
+		return null;
+		
+	}
+
+	/* Determine si les elements obligatoires d'un flux sont renseignes.
+	 * Attention, si le flux est un additif, le flux principal doit etre renseigne
+	 * MD 11/07/2012
+	 */
+	public static boolean testerElementsObligatoires(String periodeDebut, String periodeFin, String typeDeclaration, String idFluxPrincipal){
+		boolean res = true;
+
+		if(periodeDebut == null || "".equals(periodeDebut) ){
+			res = false;		
+		}
+		else if(periodeFin == null || "".equals(periodeFin) ){
+			res = false;	
+		}
+		else if(typeDeclaration == null || "".equals(typeDeclaration)){
+			res = false;
+		}
+		//L'idFluxPrincipal doit etre renseigne dans le cas d'un additif
+		else if("A".equals(typeDeclaration) && (idFluxPrincipal == null || "".equals(idFluxPrincipal)) ){
+			res = false;
+		}
+		return res;
+	}
+
+	
+	public static void main(String[] args){
+		
+		/*
+		System.out.println(AFichierUtils.getTypeDeclaration(".EXE"));
+		System.out.println(AFichierUtils.getTypeDeclaration("RFM1012A.zip"));
+		System.out.println(AFichierUtils.getTypeDeclaration("RFM1012a.EXE"));
+		System.out.println(AFichierUtils.getTypeDeclaration("RFM1012b.EXE"));
+		System.out.println(AFichierUtils.getTypeDeclaration("RFM1012b.7z"));
+		System.out.println(AFichierUtils.getTypeDeclaration("test_ADD_RFM1012b.7z"));
+		*/
+		
+		System.out.println(AFichierUtils.getFileExtension("1.csv"));
+	}
+	
+
+
+}

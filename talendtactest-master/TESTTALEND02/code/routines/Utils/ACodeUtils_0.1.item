@@ -1,0 +1,163 @@
+package routines;
+
+/*
+ * user specification: the function's comment should contain keys as follows: 1. write about the function's comment.but
+ * it must be before the "{talendTypes}" key.
+ * 
+ * 2. {talendTypes} 's value must be talend Type, it is required . its value should be one of: String, char | Character,
+ * long | Long, int | Integer, boolean | Boolean, byte | Byte, Date, double | Double, float | Float, Object, short |
+ * Short
+ * 
+ * 3. {Category} define a category for the Function. it is required. its value is user-defined .
+ * 
+ * 4. {param} 's format is: {param} <type>[(<default value or closed list values>)] <name>[ : <comment>]
+ * 
+ * <type> 's value should be one of: string, int, list, double, object, boolean, long, char, date. <name>'s value is the
+ * Function's parameter name. the {param} is optional. so if you the Function without the parameters. the {param} don't
+ * added. you can have many parameters for the Function.
+ * 
+ * 5. {example} gives a example for the Function. it is optional.
+ */
+public class ACodeUtils {
+	
+    /**
+     * isIsrc : Retourne true si le string est de type code ISRC. Ex : FR-Z03-98-00001
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} Utils
+     * 
+     * {param} string("world") input: The string need to be printed.
+     * 
+     * {example} helloExemple("world") # hello world !.
+     */
+	
+	/*
+	public static boolean isIsrc(String s) {
+		
+			return (s != null && s.length() == 12);
+	}
+	*/
+	
+	public static boolean isIsrc(String s){
+		//Ex : FR-Z03-98-00001 (sans les -)
+		//-	1ère séquence : deux caractères alphabétiques 
+		//-	2ième séquence : 3 caractères alphanumériques 
+		//-	3ième séquence : les deux derniers caractères numériques 
+		//-	4ième séquence : 5 caractères numériques 		
+		String pattern = "[A-Z]{2}[A-Z_0-9]{3}[0-9]{2}[0-9]{5}";
+		return (s != null?s.matches(pattern):false);
+	}
+	
+    /**
+     * isIsrc : Verifie que c'est un bien un code ISRC et retourne la valeur (non formattée) si c'est le cas
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} Utils
+     * 
+     * {param} string("world") input: The string need to be printed.
+     * 
+     * {example} helloExemple("world") # hello world !.
+     */
+	public static String parseIsrc(String s) {
+		
+		String sDefault = "";
+		if (!isIsrc(s)) {
+			s = sDefault;
+//		} else if (s.equals("000000000000")) {
+		} else if (s.replaceAll("0", "").equals("")) {
+			s = sDefault;
+		}
+		
+		return s;
+	}
+
+    /**
+     * isIsan : Retourne true si le string est de type code ISAN.
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} Utils
+     * 
+     * {param} string("world") input: The string need to be printed.
+     * 
+     * {example} helloExemple("world") # hello world !.
+     */
+	public static boolean isIsan(String s) {
+		
+			return true;
+	}
+
+    /**
+     * isEan : Retourne true si le string est de type code EAN.
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} Utils
+     * 
+     * {param} string("world") input: The string need to be printed.
+     * 
+     * {example} helloExemple("world") # hello world !.
+     */
+	public static boolean isEan(String s) {
+		
+			return true;
+	}
+
+    /**
+     * isUpc : Retourne true si le string est de type code UPC.
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} Utils
+     * 
+     * {param} string("world") input: The string need to be printed.
+     * 
+     * {example} helloExemple("world") # hello world !.
+     */
+	public static boolean isUpc(String s) {
+		
+			return true;
+	}
+
+    /**
+     * isEanOrUpc : Retourne true si le string est de type code EAN ou bien UPC.
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} Utils
+     * 
+     * {param} string("world") input: The string need to be printed.
+     * 
+     * {example} helloExemple("world") # hello world !.
+     */
+	public static boolean isEanOrUpc(String s) {
+		
+			return (isEan(s) || isUpc(s));
+	}
+
+    /**
+     * isIpi : Retourne true si le string est de type code IPI.
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} Utils
+     * 
+     * {param} string("world") input: The string need to be printed.
+     * 
+     * {example} helloExemple("world") # hello world !.
+     */
+	public static boolean isIpi(String s) {
+		
+			return true;
+	}
+
+}

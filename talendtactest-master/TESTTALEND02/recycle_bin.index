@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recyclebin:RecycleBin xmlns:recyclebin="http://www.talend.org/recyclebin">
+  <deletedFolders>context/Context_of_child_job</deletedFolders>
+  <deletedItems id="_R4LD0NIOEeyOobiRMbSKWw" path="" type="CONTEXT"/>
+  <deletedItems id="_Q7GXkNlhEeyzW8x56nLtOg" path="" type="METADATA_CONNECTIONS"/>
+  <deletedItems id="_Z-VvININEeyOobiRMbSKWw" path="" type="METADATA_CONNECTIONS"/>
+  <deletedItems id="_68zbINqbEeyWOpVwW5D8sg" path="" type="METADATA_FILE_DELIMITED"/>
+  <deletedItems id="_o5ocANIIEeyOobiRMbSKWw" path="Metadata_of_disney_case" type="METADATA_FILE_XML"/>
+  <deletedItems id="_7IqK0N9GEeyGAPwzZvKTiA" path="" type="PROCESS"/>
+  <deletedItems id="_iY9jcOGiEey9BZxrxoAvTw" path="" type="PROCESS"/>
+  <deletedItems id="_nJ82IN9FEeyGAPwzZvKTiA" path="" type="PROCESS"/>
+  <deletedItems id="_zWjOgN9IEeyGAPwzZvKTiA" path="" type="PROCESS"/>
+  <deletedItems id="_ZKDZsMvyEeyYSbdsFLVuvA" path="UdemyTest" type="PROCESS"/>
+</recyclebin:RecycleBin>

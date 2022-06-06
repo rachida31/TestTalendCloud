@@ -1,0 +1,26 @@
+{
+  "itemId" : "_PDpbEM8LEeyYSbdsFLVuvA",
+  "contextList" : [ {
+    "contextName" : "Default",
+    "repoId" : "_89Oy0M8LEeyYSbdsFLVuvA",
+    "parameterList" : [ {
+      "id" : "_89fRhs8LEeyYSbdsFLVuvA",
+      "name" : "PostgresDataBase"
+    }, {
+      "id" : "_89fRgc8LEeyYSbdsFLVuvA",
+      "name" : "PostgresHote"
+    }, {
+      "id" : "_89fRhM8LEeyYSbdsFLVuvA",
+      "name" : "PostgresPassword"
+    }, {
+      "id" : "_89fRg88LEeyYSbdsFLVuvA",
+      "name" : "PostgresPort"
+    }, {
+      "id" : "_89fRhc8LEeyYSbdsFLVuvA",
+      "name" : "PostgresSchema"
+    }, {
+      "id" : "_89fRgs8LEeyYSbdsFLVuvA",
+      "name" : "PostgresUser"
+    } ]
+  } ]
+}

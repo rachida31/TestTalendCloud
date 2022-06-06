@@ -1,0 +1,360 @@
+package routines;
+
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Routine qui contient les methodes de traitement des chaines String
+ * @author ADJDE01
+ * @author ADAOU01
+ */
+public class AStringUtils {
+
+		final static String caracteres_speciaux_DIP0 = "1B287330531B287330421B266C304F1B266B3053";
+
+		/**
+		 * isEmpty : Retourne true si le string est nul ou vide ou blanc
+		 * 
+		 * 
+		 * {talendTypes} String
+		 * 
+		 * {Category} AdamiUtils
+		 * 
+		 * {param} string("world") input: The string need to be printed.
+		 * 
+		 * {example} helloExemple("world") # hello world !.
+		 */
+		public static boolean isEmpty(String s) {
+
+			return s == null || "".equals(s.trim());
+		}
+
+		/**
+		 * Compare 2 chaines String
+		 * @param a
+		 * @param b
+		 * @return booleen
+		 */
+		public static boolean isEquals(String a, String b) {
+			return ((a==null && b==null) || (a != null && b != null && "".equals(a.trim()) && "".equals(b.trim())) || (a != null && b != null && a.trim().equals(b.trim()))); 
+		}
+
+		/**
+		 * Compare 2 chaines Long
+		 * @param a
+		 * @param b
+		 * @return booleen
+		 */
+		public static boolean isEquals(Long a, Long b) {
+			return ((a==null && b==null) || (a != null && a.compareTo(b) == 0)); 
+		}
+
+		/**
+		 * Compare 2 chaines en tenant compte de leur nullite eventuelle
+		 * @param a
+		 * @param b
+		 * @return booleen
+		 */
+		public static boolean isEqualsNotNull(String a, String b) {
+			return (a != null && b != null && !(a.trim().equals("")) && a.trim().equals(b.trim()));
+		}
+
+		/**
+		 * removeAccents : Supprime les accents d'une chaine de caracteres 
+		 * 
+		 * 
+		 * {talendTypes} String
+		 * 
+		 * {Category} Utils
+		 * 
+		 * {param} string("world") input: The string need to be printed.
+		 * 
+		 */
+		public static String removeAccents(String s) {
+
+			return Normalizer.normalize(s, Normalizer.Form.NFD)
+			.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+		}
+
+		/**
+		 * removeNonAlpha : Supprime les caracteres non alphanumeriques d'une chaine de caracteres 
+		 * 
+		 * 
+		 * {talendTypes} String
+		 * 
+		 * {Category} Utils
+		 * 
+		 * {param} string("world") input: The string need to be printed.
+		 * 
+		 */
+		public static String removeNonAlpha(String s) {
+			//Tout ce qui n'est pas contenu dans les [] est remplac� par un " "
+			return s.replaceAll("[^a-zA-Z 0-9]+"," ");
+		}
+		
+		public static String removeNonAlphaExceptHyphen(String s) {
+			//Tout ce qui n'est pas contenu dans les [] est remplac� par un " "
+			return s.replaceAll("[^a-zA-Z 0-9]+"," ");
+		}
+		
+		/* MD 18/07/2012 */
+		/* Remplace certains caract�res par un autre pr�d�fini*/
+		public static String replaceSpecialChars(String s) {
+					
+			while(s.indexOf("  ") != -1){
+				s = s.replaceAll("  ", " ");
+			}
+			return s;
+		}
+		
+
+		/**
+		 * removespecialChars : Supprime les caracteres speciaux d'une chaine de caracteres 
+		 * 
+		 * 
+		 * {talendTypes} String
+		 * 
+		 * {Category} Utils
+		 * 
+		 * {param} string("world") input: The string need to be printed.
+		 * 
+		 */
+		public static String removeSpecialChars(String s) {
+
+			return s;
+		}
+
+		/**
+		 * JDE	07/09/2012
+		 * Suppression des codes farfelus : Espaces, 00000...
+		 * @param nombre
+		 * @return
+		 */
+		public static String removeBadCode(String s) {
+			
+			if (s.replaceAll("0", "").equals("")) {
+				return "";
+			} else {
+				return s.trim();
+			}
+		}
+		/**
+		 * toAdamiFormat : Formatte une chaine de caracteres au format ADAMI (UPPER, sans accents ni caracteres speciaux) 
+		 * 
+		 * 
+		 * {talendTypes} String
+		 * 
+		 * {Category} Utils
+		 * 
+		 * {param} string("world") input: The string need to be printed.
+		 * 
+		 * {example} toAdamiFormatAlphaStrict("jean-luc 11 ramères é  -@gah îê voilà") # "JEAN LUC 11 RAMERES E GAH IE VOILA"
+		 * 
+		 */
+		public static String toAdamiFormat(String s) {
+			return (s == null? null:replaceSpecialChars(removeNonAlpha(removeAccents(s.trim().toUpperCase()))).trim() );
+		}
+
+		
+		/**
+		 * toAdamiFormatAlphaStrict : Formatte une chaine de caracteres au format ADAMI (UPPER, sans accents ni caracteres speciaux ni espace) 
+		 *
+		 *{talendTypes} String
+		 *
+		 *{Category} Utils
+		 *
+		 *{param} string("world") input: The string need to be printed.
+		 * 
+		 *{example} toAdamiFormatAlphaStrict("jean-luc 11 ramères é  -@gah îê voilà") # "JEANLUC11RAMERESEGAHIEVOILA"
+		 */
+		public static String toAdamiFormatAlphaStrict( String s ){
+			
+			return (s == null? null:toAdamiFormat(s).replaceAll(" ", "") );
+			
+		}
+		
+		/**
+		 * toAdamiFormatAlphaStrict : Formatte une chaine de caracteres au format ADAMI (UPPER, sans accents ni caracteres speciaux sauf le tiret (-)) 
+		 *
+		 *{talendTypes} String
+		 *
+		 *{Category} Utils
+		 *
+		 *{param} string("world") input: The string need to be printed.
+		 *
+		 *{example} toAdamiFormatAlphaLight("jean-luc 11 ramères é  -@gah îê voilà") # "JEAN-LUC 11 RAMERES E - GAH IE VOILA"
+		 * 
+		 */
+		public static String toAdamiFormatAlphaLight( String s ){
+			
+			return (s == null? null:replaceSpecialChars(removeNonAlphaExceptHyphen(removeAccents(s.trim().toUpperCase()))).trim() );
+			
+		}
+		
+		
+		/*Retourne le dernier caract�re d'une cha�ne
+		 * 
+		 * MD 20/06/2012
+		 * 
+		 */
+		public static String getDernierCaractere(String s){
+			String res = "";
+			if(s !=null && ! "".equals(s)){
+				res = String.valueOf(s.charAt(s.length()-1));
+			}
+			return res;
+		}
+
+
+		/*Retourne une cha�ne String � partir d'un code hexad�cimal
+		 * 
+		 * MD 29/06/2012
+		 * 
+		 */
+		public static String convertHexToString(String hex){
+
+			StringBuilder sb = new StringBuilder();
+			StringBuilder temp = new StringBuilder();
+
+			for( int i=0; i<hex.length()-1; i+=2 ){
+				String output = hex.substring(i, (i + 2));
+				int decimal = Integer.parseInt(output, 16);
+				sb.append((char)decimal);
+				temp.append(decimal);
+			}
+
+			return sb.toString();
+		} 
+
+		public static String getCaracteresSpeciauxEnteteDIP0(){
+			return convertHexToString(caracteres_speciaux_DIP0);
+		}
+
+
+		/* Permet de savoir si une chaine correspond � un nombre
+		 * MD 29/06/2012
+		 */
+		public static boolean isNumber( String input )  
+		{  
+			String pattern = "\\d+";
+			return input.matches(pattern);
+		}  
+
+
+		/* D�termine si une collection de String contient une sous-chaine donn�e
+		 * 
+		 * MD 01/08/2012
+		 */
+		public static  boolean contientSousChaine(Collection<String> collection, String sousChaine){
+			boolean res = false;
+			
+			for(int i=0; i<collection.size(); i++){
+				String item = (String) collection.toArray()[i];
+				if( item.indexOf(sousChaine) != -1){
+					res = true;
+					break;
+				}
+			}
+			
+			return res;
+		}
+		
+		/* D�termine si une collection de String matches une sous-chaine donn�e
+		 * 
+		 * MD 02/08/2012
+		 */
+		public static  boolean matchesSousChaine(Collection<String> collection, String sousChaine){
+			boolean res = false;
+			
+			for(int i=0; i<collection.size(); i++){
+				String item = (String) collection.toArray()[i];
+				if( item.matches(sousChaine) == true){
+					res = true;
+					break;
+				}
+			}
+			
+			return res;
+		}
+		
+		/* D�termine si une chaine de String vaut z�ro. Ex  "00000"
+		 * 
+		 * MD 01/08/2012
+		 */
+		public static boolean isStringEqualsZero(String s){
+			boolean res = false;
+			String pattern = "[\\d]+";
+			if( s.matches(pattern) ){
+				Long l = new Long(s);
+				if(l.longValue() == 0){
+					res = true;
+				}
+			}
+			
+			return res;
+		}
+		
+		
+		/* Determine si une chaine de String est strinctement inferieure à un nombre. Ex  isStringStrictementInferieurANombre("0008", 10) renvoi vrai 
+		 * 
+		 * MD 01/08/2012
+		 */
+		public static boolean isStringStrictementInferieurANombre(String s, int nombre){
+			boolean res = false;
+			String pattern = "[\\d]+";
+			if( s.matches(pattern) ){
+				Long l = new Long(s);
+				if(l.longValue() < nombre){
+					res = true;
+				}
+			}
+			
+			return res;
+		}
+
+		/**
+		 * Tri d'une liste (String avec separateurs) par ordre alphabetique 
+		 * @param liste
+		 * @param separateur
+		 * @return
+		 */
+		public static String orderListe(String liste, String separateur) {
+			String sortie = "";
+			if (liste != null) {
+				List<String> l = new ArrayList(Arrays.asList(liste.split(separateur)));
+				Collections.sort(l);
+				for(String t:l) {
+					if (!"".equals(t)) {
+						sortie+=t + separateur;
+					}
+				}
+				//On supprime la virgule en fin de chaine
+				if (!"".equals(sortie)) {
+					sortie = sortie.substring(0, sortie.length()-1);
+				}
+			}
+			
+			return sortie;
+
+		}
+		
+		public static void main(String args[]){
+			
+			String test = "jean-luc 11 ramères é  -@gah îê voilà";
+			
+			System.out.println("toAdamiFormat : " + AStringUtils.toAdamiFormat(test));
+			
+			System.out.println("toAdamiFormatAlphaStrict : " + AStringUtils.toAdamiFormatAlphaStrict(test));
+			
+			System.out.println("toAdamiFormatAlphaLight : " + AStringUtils.toAdamiFormatAlphaLight(test));
+			
+			//System.out.println(TestRoutine.removeNonAlphaExceptHyphen("jean-luc"));
+		}
+		
+
+	}
+

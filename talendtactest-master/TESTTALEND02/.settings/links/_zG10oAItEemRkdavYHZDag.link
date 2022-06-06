@@ -1,0 +1,244 @@
+{
+  "itemId" : "_zG10oAItEemRkdavYHZDag",
+  "contextList" : [ {
+    "contextName" : "Default",
+    "repoId" : "_dl8lYBguEemfyd8cllg8fA",
+    "parameterList" : [ {
+      "id" : "_heO4hoqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_ADDITIONAL_PARAM"
+    }, {
+      "id" : "_heO4gYqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_DATABASE"
+    }, {
+      "id" : "_heO4goqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_HOTE"
+    }, {
+      "id" : "_heO4hYqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_PASSWORD"
+    }, {
+      "id" : "_heO4g4qBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_PORT"
+    }, {
+      "id" : "_heO4hIqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_USER"
+    } ]
+  }, {
+    "contextName" : "Default",
+    "repoId" : "_ZOGR0AIpEemRkdavYHZDag",
+    "parameterList" : [ {
+      "id" : "_hejooYqBEeuQ8d3y-OkmbA",
+      "name" : "fileConfig"
+    }, {
+      "id" : "_hejoooqBEeuQ8d3y-OkmbA",
+      "name" : "separator"
+    } ]
+  }, {
+    "contextName" : "Default",
+    "repoId" : "_-4cj0ASFEeme36Py20srdg",
+    "parameterList" : [ {
+      "id" : "_hgQ40oqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_ENVIRONNEMENT"
+    }, {
+      "id" : "_hgQ41YqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireArchive"
+    }, {
+      "id" : "_hgQ404qBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireDepot"
+    }, {
+      "id" : "_hgQ41oqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireRejet"
+    }, {
+      "id" : "_hgQ41IqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireTmp"
+    }, {
+      "id" : "_hgQ42IqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_RepertoireLog"
+    }, {
+      "id" : "_hgQ414qBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_PROJET"
+    }, {
+      "id" : "_hgQ40YqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_REPERTOIRE_RACINE"
+    } ]
+  }, {
+    "contextName" : "PROD",
+    "repoId" : "_dl8lYBguEemfyd8cllg8fA",
+    "parameterList" : [ {
+      "id" : "_heO4hoqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_ADDITIONAL_PARAM"
+    }, {
+      "id" : "_heO4gYqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_DATABASE"
+    }, {
+      "id" : "_heO4goqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_HOTE"
+    }, {
+      "id" : "_heO4hYqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_PASSWORD"
+    }, {
+      "id" : "_heO4g4qBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_PORT"
+    }, {
+      "id" : "_heO4hIqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_USER"
+    } ]
+  }, {
+    "contextName" : "PROD",
+    "repoId" : "_ZOGR0AIpEemRkdavYHZDag",
+    "parameterList" : [ {
+      "id" : "_hejop4qBEeuQ8d3y-OkmbA",
+      "name" : "fileConfig"
+    }, {
+      "id" : "_hejoqIqBEeuQ8d3y-OkmbA",
+      "name" : "separator"
+    } ]
+  }, {
+    "contextName" : "PROD",
+    "repoId" : "_-4cj0ASFEeme36Py20srdg",
+    "parameterList" : [ {
+      "id" : "_hgQ40oqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_ENVIRONNEMENT"
+    }, {
+      "id" : "_hgQ41YqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireArchive"
+    }, {
+      "id" : "_hgQ404qBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireDepot"
+    }, {
+      "id" : "_hgQ41oqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireRejet"
+    }, {
+      "id" : "_hgQ41IqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireTmp"
+    }, {
+      "id" : "_hgQ42IqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_RepertoireLog"
+    }, {
+      "id" : "_hgQ414qBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_PROJET"
+    }, {
+      "id" : "_hgQ40YqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_REPERTOIRE_RACINE"
+    } ]
+  }, {
+    "contextName" : "DEV",
+    "repoId" : "_dl8lYBguEemfyd8cllg8fA",
+    "parameterList" : [ {
+      "id" : "_heO4hoqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_ADDITIONAL_PARAM"
+    }, {
+      "id" : "_heO4gYqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_DATABASE"
+    }, {
+      "id" : "_heO4goqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_HOTE"
+    }, {
+      "id" : "_heO4hYqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_PASSWORD"
+    }, {
+      "id" : "_heO4g4qBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_PORT"
+    }, {
+      "id" : "_heO4hIqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_USER"
+    } ]
+  }, {
+    "contextName" : "DEV",
+    "repoId" : "_ZOGR0AIpEemRkdavYHZDag",
+    "parameterList" : [ {
+      "id" : "_hejopIqBEeuQ8d3y-OkmbA",
+      "name" : "fileConfig"
+    }, {
+      "id" : "_hejopYqBEeuQ8d3y-OkmbA",
+      "name" : "separator"
+    } ]
+  }, {
+    "contextName" : "DEV",
+    "repoId" : "_-4cj0ASFEeme36Py20srdg",
+    "parameterList" : [ {
+      "id" : "_hgQ40oqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_ENVIRONNEMENT"
+    }, {
+      "id" : "_hgQ41YqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireArchive"
+    }, {
+      "id" : "_hgQ404qBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireDepot"
+    }, {
+      "id" : "_hgQ41oqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireRejet"
+    }, {
+      "id" : "_hgQ41IqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireTmp"
+    }, {
+      "id" : "_hgQ42IqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_RepertoireLog"
+    }, {
+      "id" : "_hgQ414qBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_PROJET"
+    }, {
+      "id" : "_hgQ40YqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_REPERTOIRE_RACINE"
+    } ]
+  }, {
+    "contextName" : "TEST",
+    "repoId" : "_dl8lYBguEemfyd8cllg8fA",
+    "parameterList" : [ {
+      "id" : "_heO4hoqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_ADDITIONAL_PARAM"
+    }, {
+      "id" : "_heO4gYqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_DATABASE"
+    }, {
+      "id" : "_heO4goqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_HOTE"
+    }, {
+      "id" : "_heO4hYqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_PASSWORD"
+    }, {
+      "id" : "_heO4g4qBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_PORT"
+    }, {
+      "id" : "_heO4hIqBEeuQ8d3y-OkmbA",
+      "name" : "CNX_AMC_USER"
+    } ]
+  }, {
+    "contextName" : "TEST",
+    "repoId" : "_ZOGR0AIpEemRkdavYHZDag",
+    "parameterList" : [ {
+      "id" : "_hejoqoqBEeuQ8d3y-OkmbA",
+      "name" : "fileConfig"
+    }, {
+      "id" : "_hejoq4qBEeuQ8d3y-OkmbA",
+      "name" : "separator"
+    } ]
+  }, {
+    "contextName" : "TEST",
+    "repoId" : "_-4cj0ASFEeme36Py20srdg",
+    "parameterList" : [ {
+      "id" : "_hgQ40oqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_ENVIRONNEMENT"
+    }, {
+      "id" : "_hgQ41YqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireArchive"
+    }, {
+      "id" : "_hgQ404qBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireDepot"
+    }, {
+      "id" : "_hgQ41oqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireRejet"
+    }, {
+      "id" : "_hgQ41IqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_Fichier_RepertoireTmp"
+    }, {
+      "id" : "_hgQ42IqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_Gestion_RepertoireLog"
+    }, {
+      "id" : "_hgQ414qBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_PROJET"
+    }, {
+      "id" : "_hgQ40YqBEeuQ8d3y-OkmbA",
+      "name" : "CONFIG_REPERTOIRE_RACINE"
+    } ]
+  } ]
+}

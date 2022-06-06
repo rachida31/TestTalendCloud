@@ -1,0 +1,71 @@
+{
+  "itemId" : "_0DWawJbAEeak6YfT0zIX6g",
+  "contextList" : [ {
+    "contextName" : "Default",
+    "repoId" : "_nWPF0I7nEeacQL0M8l4Y7A",
+    "parameterList" : [ {
+      "id" : "_6y8hghPyEeuILsUcDDmHYg",
+      "name" : "fileConfig"
+    }, {
+      "id" : "_6y8hgxPyEeuILsUcDDmHYg",
+      "name" : "separator"
+    } ]
+  }, {
+    "contextName" : "Default",
+    "repoId" : "_4X_u8I7tEeayroU79kVmxQ",
+    "parameterList" : [ {
+      "id" : "_6z1SVxPyEeuILsUcDDmHYg",
+      "name" : "IPD_DB_Connexion_AdditionalParams"
+    }, {
+      "id" : "_6z1SVRPyEeuILsUcDDmHYg",
+      "name" : "IPD_DB_Connexion_Database"
+    }, {
+      "id" : "_6z1SVhPyEeuILsUcDDmHYg",
+      "name" : "IPD_DB_Connexion_Login"
+    }, {
+      "id" : "_6z1SVBPyEeuILsUcDDmHYg",
+      "name" : "IPD_DB_Connexion_Password"
+    }, {
+      "id" : "_6z1SWBPyEeuILsUcDDmHYg",
+      "name" : "IPD_DB_Connexion_Port"
+    }, {
+      "id" : "_6z1SUxPyEeuILsUcDDmHYg",
+      "name" : "IPD_DB_Connexion_Server"
+    }, {
+      "id" : "_6z1SWRPyEeuILsUcDDmHYg",
+      "name" : "IPD_DB_Log"
+    } ]
+  }, {
+    "contextName" : "Default",
+    "repoId" : "_JQr4cI7wEeayroU79kVmxQ",
+    "parameterList" : [ {
+      "id" : "_6z_DUhPyEeuILsUcDDmHYg",
+      "name" : "archivedDirectory"
+    }, {
+      "id" : "_6z_DUxPyEeuILsUcDDmHYg",
+      "name" : "unarchivedDirectory"
+    } ]
+  }, {
+    "contextName" : "Default",
+    "repoId" : "_5PiJwJRlEeaLBdzOuD6hnQ",
+    "parameterList" : [ {
+      "id" : "_60I0VxPyEeuILsUcDDmHYg",
+      "name" : "currentXmlFile"
+    }, {
+      "id" : "_60I0UxPyEeuILsUcDDmHYg",
+      "name" : "fluxId"
+    }, {
+      "id" : "_60I0VRPyEeuILsUcDDmHYg",
+      "name" : "fluxStatus"
+    }, {
+      "id" : "_60I0VBPyEeuILsUcDDmHYg",
+      "name" : "idDeclarant"
+    }, {
+      "id" : "_60I0UhPyEeuILsUcDDmHYg",
+      "name" : "zipFileName"
+    }, {
+      "id" : "_60I0VhPyEeuILsUcDDmHYg",
+      "name" : "zipFilePath"
+    } ]
+  } ]
+}

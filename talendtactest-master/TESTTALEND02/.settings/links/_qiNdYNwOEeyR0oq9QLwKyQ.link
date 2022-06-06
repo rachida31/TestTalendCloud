@@ -1,0 +1,17 @@
+{
+  "itemId" : "_qiNdYNwOEeyR0oq9QLwKyQ",
+  "contextList" : [ {
+    "contextName" : "Default",
+    "repoId" : "_H_kzINdVEeyQ7cgxiEjDGQ",
+    "parameterList" : [ {
+      "id" : "_BU81YNwPEeyR0oq9QLwKyQ",
+      "name" : "Disney_folder"
+    }, {
+      "id" : "_IARWsddVEeyQ7cgxiEjDGQ",
+      "name" : "OutPut_tmp_XML_File_Path"
+    }, {
+      "id" : "_MBKV4NwOEeyR0oq9QLwKyQ",
+      "name" : "OutPut_XML_File_Path"
+    } ]
+  } ]
+}
